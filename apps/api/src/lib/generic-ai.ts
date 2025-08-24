@@ -18,9 +18,10 @@ type Provider =
   | "fireworks"
   | "deepinfra"
   | "vertex";
-const defaultProvider: Provider = process.env.OLLAMA_BASE_URL
-  ? "ollama"
-  : "openai";
+const defaultProvider: Provider =
+  process.env.FIRECRAWL_LLM_PROVIDER === 'groq'
+    ? 'groq'
+    : (process.env.OLLAMA_BASE_URL ? 'ollama' : 'openai');
 
 const providerList: Record<Provider, any> = {
   openai: createOpenAI({
